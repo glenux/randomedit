@@ -1,6 +1,6 @@
 # Randomedit
 
-![Go](https://github.com/glenux/randomedit/workflows/Go/badge.svg)
+![Build](https://github.com/glenux/randomedit/workflows/Build/badge.svg)
 
 For when you can't decide what you want to start with.
 
