@@ -1,5 +1,7 @@
 # Randomedit
 
+![Go](https://github.com/glenux/randomedit/workflows/Go/badge.svg)
+
 For when you can't decide what you want to start with.
 
 ## Installation
