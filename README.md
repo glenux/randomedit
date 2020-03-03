@@ -4,10 +4,15 @@
 
 For when you can't decide what you want to start with.
 
+## Prerequisites
+
+Make sure you have a recent version of Golang installed.
+
 ## Installation
 
-:warning: FIXME
+Type the following command:
 
+    make build
 
 ## Usage
 
