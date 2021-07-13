@@ -36,21 +36,30 @@ func findFiles(dir string, patterns []string) []string {
 func main() {
 	var directories []string
 	var patterns []string
+	var verbose bool
+	var editor string
 	flag.StringArrayVarP(&directories, "dir", "d", []string{"."}, "Look in given directory")
 	flag.StringArrayVarP(&patterns, "pattern", "p", []string{}, "Match given globbing pattern")
+	flag.StringVarP(&editor, "editor", "e", "", "Use given editor command")
+	flag.BoolVarP(&verbose, "verbose", "v", false, "Match given globbing pattern")
 	flag.Parse()
 
 	if len(patterns) < 1 {
 		patterns = []string{"*.txt", "*.md"}
 	}
-
 	// fmt.Printf("%#v\n", directories)
-	editor := os.Getenv("EDITOR")
+
+	if len(editor) < 1 {
+		editor = os.Getenv("EDITOR")
+	}
 
 	// walk dirs & merge result
 	filesSet := map[string]int{}
 	for _, dir := range directories {
 		for _, file := range findFiles(dir, patterns) {
+			if verbose {
+				fmt.Printf("d: Found %s\n", file)
+			}
 			if _, ok := filesSet[file]; !ok {
 				filesSet[file] = 0
 			}
@@ -60,7 +69,15 @@ func main() {
 	// extract keys
 	files := []string{}
 	for k := range filesSet {
+		if verbose {
+			fmt.Printf("d: #%d. %s\n", len(files), k)
+		}
 		files = append(files, k)
+	}
+
+	if verbose {
+		// fmt.Printf("d: List %+v\n", files)
+		fmt.Printf("d: List has %d entries\n", len(files))
 	}
 
 	if len(files) < 1 {
@@ -70,6 +87,9 @@ func main() {
 
 	rand.Seed(time.Now().UTC().UnixNano())
 	choice := rand.Intn(len(files))
+	if verbose {
+		fmt.Printf("d: Chosen entry n°%d\n", choice)
+	}
 	fmt.Printf("%s %s\n", editor, files[choice])
 
 	// Run editor
