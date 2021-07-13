@@ -8,8 +8,8 @@ HOST_GOOS=$(shell go env GOOS)
 HOST_GOARCH=$(shell go env GOARCH)
 # GOOS=windows GOARCH=386 
 
-NAME=vedecom-ukko
-REPO_PATH=bitbucket.com/glenux-corp/vedecom-ukko
+NAME=randomedit
+REPO_PATH=bitbucket.com/glenux-corp/randomedit
 BUILD_DIR=$(shell pwd)/_build
 INSTALL_DIR=$(PREFIX)/bin
 SHARE_DIR=$(PREFIX)/share/$(NAME)
